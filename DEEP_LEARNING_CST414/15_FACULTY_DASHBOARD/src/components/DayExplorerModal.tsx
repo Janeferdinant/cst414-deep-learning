@@ -96,6 +96,27 @@ export const DayExplorerModal: React.FC<DayExplorerModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Direct Handwritten PDF Download */}
+            <a
+              href={`/downloads/CST414_Module_${dayItem.module}_Handwritten_Notes.pdf`}
+              download={`CST414_Module_${dayItem.module}_Handwritten_Notes.pdf`}
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-burgundy-900 hover:bg-burgundy-800 border border-gold-500/40 text-gold-200 flex items-center gap-1.5 shadow transition-all"
+              title="Download Printable Handwritten Notes PDF"
+            >
+              <Download className="w-3.5 h-3.5 text-gold-400" />
+              <span className="hidden sm:inline">Handwritten PDF</span>
+            </a>
+
+            {/* Print button */}
+            <button
+              onClick={() => window.print()}
+              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-navy-950 hover:bg-slate-800 border border-slate-700 text-slate-300 flex items-center gap-1 transition-all"
+              title="Print this lesson"
+            >
+              <span>🖨️</span>
+              <span className="hidden md:inline">Print</span>
+            </button>
+
             {/* Status toggle */}
             <button
               onClick={() => onToggleStatus(dayItem.day_number)}
@@ -536,27 +557,83 @@ export const DayExplorerModal: React.FC<DayExplorerModalProps> = ({
           {/* TAB 8: ASSETS & DOWNLOADS */}
           {activeTab === 'files' && (
             <div className="space-y-4">
+              
+              {/* Featured Downloads Bar */}
+              <div className="p-5 rounded-xl bg-gradient-to-r from-navy-950 via-burgundy-950/70 to-navy-950 border border-gold-500/40 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-bold text-gold-300 flex items-center gap-2">
+                      <Download className="w-4 h-4 text-gold-400" />
+                      <span>Printable Handwritten PDF &amp; Slide Downloads</span>
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-0.5">
+                      Authentic handwritten Kalam typography formatted for A4 printing and double-sided study booklets.
+                    </p>
+                  </div>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/40">
+                    Ready to Print
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-1">
+                  <a
+                    href={`/downloads/CST414_Module_${dayItem.module}_Handwritten_Notes.pdf`}
+                    download={`CST414_Module_${dayItem.module}_Handwritten_Notes.pdf`}
+                    className="p-2.5 rounded-lg bg-burgundy-900/80 hover:bg-burgundy-800 border border-gold-500/40 text-gold-200 text-xs font-semibold flex items-center justify-between transition-all shadow"
+                  >
+                    <span>📄 Module {dayItem.module} Handwritten PDF</span>
+                    <Download className="w-3.5 h-3.5 text-gold-400" />
+                  </a>
+
+                  <a
+                    href="/downloads/CST414_Handwritten_Lecture_Slides_Handout.pdf"
+                    download="CST414_Handwritten_Lecture_Slides_Handout.pdf"
+                    className="p-2.5 rounded-lg bg-navy-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between transition-all"
+                  >
+                    <span>📑 Slides Handout (PDF)</span>
+                    <Download className="w-3.5 h-3.5 text-gold-400" />
+                  </a>
+
+                  <a
+                    href={`/downloads/Module_${dayItem.module}_Master_Presentation.pptx`}
+                    download={`Module_${dayItem.module}_Master_Presentation.pptx`}
+                    className="p-2.5 rounded-lg bg-navy-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between transition-all"
+                  >
+                    <span>📊 Module {dayItem.module} Slides (.pptx)</span>
+                    <Download className="w-3.5 h-3.5 text-gold-400" />
+                  </a>
+
+                  <button
+                    onClick={() => window.print()}
+                    className="p-2.5 rounded-lg bg-navy-900 hover:bg-slate-800 border border-slate-700 text-gold-300 text-xs font-semibold flex items-center justify-between transition-all"
+                  >
+                    <span>🖨️ Print Lesson (PDF)</span>
+                    <span className="text-[10px] text-slate-400">Ctrl+P</span>
+                  </button>
+                </div>
+              </div>
+
               <div className="p-4 rounded-xl bg-navy-950/70 border border-gold-500/20">
                 <h3 className="text-sm font-bold text-gold-300 mb-1 flex items-center gap-2">
-                  <Download className="w-4 h-4 text-gold-400" />
+                  <FileText className="w-4 h-4 text-gold-400" />
                   <span>All 9 Generated Daily Files for Day #{dayItem.day_number.toString().padStart(2, '0')}</span>
                 </h3>
                 <p className="text-xs text-slate-400">
-                  Located in: <code className="text-gold-300">DEEP_LEARNING_CST414/03_DAILY_CLASS_CONTENT/.../DAY_{dayItem.day_number.toString().padStart(2, '0')}/</code>
+                  Stored in local repository at: <code className="text-gold-300">DEEP_LEARNING_CST414/03_DAILY_CLASS_CONTENT/.../DAY_{dayItem.day_number.toString().padStart(2, '0')}/</code>
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
-                  { name: 'Daily_Lesson_Notes.docx', desc: 'Complete KTU syllabus notes with math derivations', ext: 'DOCX' },
-                  { name: 'Daily_Lecture_Slides.pptx', desc: '10-slide faculty presentation deck', ext: 'PPTX' },
-                  { name: 'Teaching_Script.docx', desc: 'Pedagogical delivery script with class checkpoints', ext: 'DOCX' },
-                  { name: 'Python_Demo.ipynb', desc: 'Executable Jupyter / Colab demo notebook', ext: 'IPYNB' },
-                  { name: 'Numerical_Problems_With_Solutions.docx', desc: '2 solved numericals with step-by-step arithmetic', ext: 'DOCX' },
-                  { name: 'Real_World_Application.docx', desc: 'Production case study & pipeline architecture', ext: 'DOCX' },
-                  { name: 'Viva_Questions_With_Answers.docx', desc: '10 curated oral questions with model answers', ext: 'DOCX' },
-                  { name: 'Class_Quiz.docx', desc: 'Objective MCQs and descriptive homework questions', ext: 'DOCX' },
-                  { name: 'Reference_Materials.md', desc: 'Official textbook citations and further reading', ext: 'MD' },
+                  { name: 'Daily_Lesson_Notes.docx', desc: 'Complete KTU syllabus notes with math derivations', ext: 'DOCX', dl: `/downloads/CST414_Module_${dayItem.module}_Handwritten_Notes.pdf` },
+                  { name: 'Daily_Lecture_Slides.pptx', desc: '10-slide faculty presentation deck', ext: 'PPTX', dl: `/downloads/Module_${dayItem.module}_Master_Presentation.pptx` },
+                  { name: 'Teaching_Script.docx', desc: 'Pedagogical delivery script with class checkpoints', ext: 'DOCX', dl: null },
+                  { name: 'Python_Demo.ipynb', desc: 'Executable Jupyter / Colab demo notebook', ext: 'IPYNB', dl: null },
+                  { name: 'Numerical_Problems_With_Solutions.docx', desc: '2 solved numericals with step-by-step arithmetic', ext: 'DOCX', dl: `/downloads/CST414_Module_${dayItem.module}_Handwritten_Notes.pdf` },
+                  { name: 'Real_World_Application.docx', desc: 'Production case study & pipeline architecture', ext: 'DOCX', dl: null },
+                  { name: 'Viva_Questions_With_Answers.docx', desc: '10 curated oral questions with model answers', ext: 'DOCX', dl: `/downloads/CST414_Module_${dayItem.module}_Handwritten_Notes.pdf` },
+                  { name: 'Class_Quiz.docx', desc: 'Objective MCQs and descriptive homework questions', ext: 'DOCX', dl: null },
+                  { name: 'Reference_Materials.md', desc: 'Official textbook citations and further reading', ext: 'MD', dl: null },
                 ].map((file, fIdx) => (
                   <div key={fIdx} className="p-3.5 rounded-xl bg-navy-950/60 border border-slate-800 hover:border-gold-500/40 transition-all flex flex-col justify-between">
                     <div>
@@ -570,13 +647,23 @@ export const DayExplorerModal: React.FC<DayExplorerModalProps> = ({
                       <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">{file.desc}</p>
                     </div>
 
-                    <button 
-                      onClick={() => alert(`Accessing: DEEP_LEARNING_CST414/03_DAILY_CLASS_CONTENT/.../DAY_${dayItem.day_number.toString().padStart(2, '0')}/${file.name}`)}
-                      className="mt-3 w-full py-1.5 bg-navy-900 hover:bg-burgundy-900 border border-slate-700 hover:border-gold-500/40 rounded-lg text-[11px] font-semibold text-gold-300 transition-all flex items-center justify-center gap-1"
-                    >
-                      <Download className="w-3 h-3" />
-                      <span>Access File</span>
-                    </button>
+                    {file.dl ? (
+                      <a
+                        href={file.dl}
+                        download
+                        className="mt-3 w-full py-1.5 bg-navy-900 hover:bg-burgundy-900 border border-slate-700 hover:border-gold-500/40 rounded-lg text-[11px] font-semibold text-gold-300 transition-all flex items-center justify-center gap-1"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Download Asset</span>
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => alert(`Available in repository at: DEEP_LEARNING_CST414/03_DAILY_CLASS_CONTENT/.../DAY_${dayItem.day_number.toString().padStart(2, '0')}/${file.name}`)}
+                        className="mt-3 w-full py-1.5 bg-navy-900/60 hover:bg-navy-800 border border-slate-800 rounded-lg text-[11px] font-medium text-slate-400 transition-all flex items-center justify-center gap-1"
+                      >
+                        <span>Local Repo File</span>
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>

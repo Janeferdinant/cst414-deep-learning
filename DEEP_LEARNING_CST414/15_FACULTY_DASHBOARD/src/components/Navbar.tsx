@@ -95,25 +95,65 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="dropdown relative group">
             <button className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-burgundy-800 to-burgundy-900 hover:from-burgundy-700 hover:to-burgundy-800 border border-gold-500/40 rounded-lg text-xs font-semibold text-gold-200 shadow-md transition-all">
               <Download className="w-3.5 h-3.5" />
-              <span>Export</span>
+              <span>Downloads &amp; Print</span>
             </button>
-            <div className="hidden group-hover:block absolute right-0 mt-1 w-44 bg-navy-900 border border-gold-500/30 rounded-lg shadow-xl py-1 z-50">
-              <button onClick={() => onExport('docx')} className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between">
-                <span>Word Package (.docx)</span>
-                <span className="text-[10px] text-slate-400">324 Files</span>
-              </button>
-              <button onClick={() => onExport('pptx')} className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between">
-                <span>PowerPoint (.pptx)</span>
-                <span className="text-[10px] text-slate-400">36 Slides</span>
-              </button>
-              <button onClick={() => onExport('xlsx')} className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between">
-                <span>Excel Schedule (.xlsx)</span>
-                <span className="text-[10px] text-slate-400">Schedules</span>
-              </button>
-              <button onClick={() => onExport('ipynb')} className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between">
-                <span>Jupyter Demos (.ipynb)</span>
-                <span className="text-[10px] text-slate-400">36 Demos</span>
-              </button>
+            <div className="hidden group-hover:block absolute right-0 mt-1 w-64 bg-navy-900 border border-gold-500/40 rounded-xl shadow-2xl py-2 z-50 text-xs">
+              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-400 border-b border-slate-800 mb-1">
+                Printable Handwritten PDFs
+              </div>
+              <a 
+                href="/downloads/CST414_Deep_Learning_Master_Handwritten_Notes.pdf" 
+                download="CST414_Deep_Learning_Master_Handwritten_Notes.pdf"
+                className="w-full text-left px-3 py-1.5 text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between transition-colors"
+              >
+                <span className="font-semibold text-gold-200">📄 Master Handwritten Notes</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/40">36 Days</span>
+              </a>
+              <a 
+                href="/downloads/CST414_Handwritten_Lecture_Slides_Handout.pdf" 
+                download="CST414_Handwritten_Lecture_Slides_Handout.pdf"
+                className="w-full text-left px-3 py-1.5 text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between transition-colors"
+              >
+                <span className="font-semibold text-gold-200">📑 Slides Handout (2/Page)</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-navy-950 text-gold-300 border border-slate-700">PDF Print</span>
+              </a>
+
+              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-t border-b border-slate-800 my-1">
+                Module-Wise Handwritten Booklets
+              </div>
+              {[1, 2, 3, 4, 5].map((m) => (
+                <a
+                  key={m}
+                  href={`/downloads/CST414_Module_${m}_Handwritten_Notes.pdf`}
+                  download={`CST414_Module_${m}_Handwritten_Notes.pdf`}
+                  className="w-full text-left px-3 py-1 text-slate-300 hover:bg-burgundy-900/40 hover:text-gold-200 flex items-center justify-between transition-colors"
+                >
+                  <span>Module {m} Handwritten PDF</span>
+                  <span className="text-[10px] text-slate-400">PDF</span>
+                </a>
+              ))}
+
+              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-t border-b border-slate-800 my-1">
+                PowerPoint Slide Decks
+              </div>
+              <a 
+                href="/downloads/CST414_All_Lecture_Slides_PPTX.zip" 
+                download="CST414_All_Lecture_Slides_PPTX.zip"
+                className="w-full text-left px-3 py-1.5 text-slate-200 hover:bg-burgundy-900/60 hover:text-gold-300 flex items-center justify-between transition-colors"
+              >
+                <span>📊 All 5 Master PPTX Slides</span>
+                <span className="text-[10px] text-slate-400">ZIP</span>
+              </a>
+
+              <div className="border-t border-slate-800 pt-1 mt-1">
+                <button
+                  onClick={() => window.print()}
+                  className="w-full text-left px-3 py-1.5 text-slate-200 hover:bg-slate-800 text-gold-300 flex items-center justify-between font-semibold"
+                >
+                  <span>🖨️ Print / Save View to PDF</span>
+                  <span className="text-[10px] text-slate-400">Ctrl+P</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

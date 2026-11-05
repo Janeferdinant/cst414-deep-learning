@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-800: #101B37;
+  --color-navy-900: #0B1226;
+  --color-navy-950: #070B19;
+  --color-burgundy-600: #A81B32;
+  --color-burgundy-700: #881326;
+  --color-burgundy-800: #6A0E1D;
+  --color-burgundy-900: #4B0A14;
+  --color-burgundy-950: #33070E;
+  --color-gold-100: #FFF8E1;
+  --color-gold-200: #FFF1C5;
+  --color-gold-300: #E5C358;
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #BF9B27;
+  --color-gold-600: #997817;
+}
+
+body {
+  background-color: #070B19;
+  color: #F1F5F9;
+  min-height: 100vh;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(88, 10, 22, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(17, 29, 62, 0.3) 0%, transparent 70%);
+  background-attachment: fixed;
+}
+
+.glass-panel {
+  background: rgba(11, 18, 38, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+.glass-panel-burgundy {
+  background: linear-gradient(135deg, rgba(88, 10, 22, 0.8) 0%, rgba(17, 29, 62, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(88, 10, 22, 0.5);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF1C5 0%, #D4AF37 50%, #AA8010 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.burgundy-gradient-text {
+  background: linear-gradient(135deg, #FF6B81 0%, #B81D39 50%, #580A16 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070B19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
